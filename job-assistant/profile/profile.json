@@ -1,0 +1,94 @@
+{
+  "personal": {
+    "full_name": "Anderson de Souza Alves",
+    "email": "",
+    "phone": "",
+    "country": "Brazil",
+    "city": "Brasilia",
+    "linkedin": "",
+    "github": "",
+    "english_level": "Fluent",
+    "availability": "Immediate"
+  },
+  "target": {
+    "roles": [
+      "Senior Software Engineer",
+      "Senior Java Developer",
+      "Backend Engineer",
+      "Java Tech Lead",
+      "Software Architect",
+      "Solutions Architect"
+    ],
+    "work_modes": [
+      "Remote"
+    ],
+    "employment_types": [
+      "Contractor",
+      "Full-time",
+      "PJ",
+      "CLT"
+    ],
+    "accepted_regions": [
+      "Worldwide",
+      "Latin America",
+      "Brazil",
+      "Americas"
+    ]
+  },
+  "skills": {
+    "primary": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "AWS",
+      "REST API",
+      "PostgreSQL"
+    ],
+    "secondary": [
+      "Kafka",
+      "Docker",
+      "Kubernetes",
+      "Redis",
+      "MongoDB",
+      "Azure",
+      "GCP",
+      "Terraform",
+      "GitHub Actions"
+    ],
+    "architecture": [
+      "DDD",
+      "Hexagonal Architecture",
+      "Clean Architecture",
+      "CQRS",
+      "SAGA",
+      "Event-driven architecture"
+    ]
+  },
+  "experience": {
+    "total_years": 20,
+    "java_since": 2005,
+    "seniority": [
+      "Senior",
+      "Lead",
+      "Architect",
+      "Staff"
+    ]
+  },
+  "compensation": {
+    "minimum_usd_hourly": 30,
+    "target_usd_hourly": 36,
+    "minimum_brl_monthly": 22000,
+    "salary_unknown_accepted": true
+  },
+  "exclusions": {
+    "roles": [
+      "Junior",
+      "Intern",
+      "Trainee"
+    ],
+    "locations": [
+      "US only without sponsorship",
+      "On-site outside Brazil"
+    ]
+  }
+}
