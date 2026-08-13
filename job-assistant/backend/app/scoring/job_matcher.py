@@ -24,7 +24,6 @@ class JobMatcher:
             "spring boot",
             "springboot",
             "spring framework",
-            "spring",
         ],
         "Microservices": [
             "microservices",
@@ -49,8 +48,6 @@ class JobMatcher:
             "rest api",
             "rest apis",
             "restful",
-            "api",
-            "apis",
         ],
         "PostgreSQL": [
             "postgresql",
@@ -63,31 +60,26 @@ class JobMatcher:
         ],
         "Docker": [
             "docker",
-            "container",
-            "containers",
+            "docker compose",
             "containerization",
         ],
         "Kubernetes": [
             "kubernetes",
             "k8s",
-            "eks",
-            "aks",
         ],
         "Redis": [
             "redis",
-            "cache",
-            "caching",
+            "redis cache",
         ],
         "MongoDB": [
             "mongodb",
-            "mongo",
-            "nosql",
+            "mongo db",
+            "nosql database",
         ],
         "Azure": [
             "azure",
-            "aks",
             "azure functions",
-            "event hub",
+            "azure kubernetes",
         ],
         "GCP": [
             "gcp",
@@ -101,9 +93,9 @@ class JobMatcher:
         ],
         "GitHub Actions": [
             "github actions",
+            "github workflows",
             "ci cd",
             "ci/cd",
-            "pipeline",
         ],
         "DDD": [
             "ddd",
@@ -556,15 +548,33 @@ class JobMatcher:
             )
 
             for variant in variants:
-                normalized_variant = self._normalize_text(
-                    variant
-                )
-
-                if normalized_variant in corpus:
+                if self._contains_skill_variant(
+                    corpus,
+                    variant,
+                ):
                     matched.append(skill)
                     break
 
         return matched
+
+    @staticmethod
+    def _contains_skill_variant(
+        corpus: str,
+        variant: str,
+    ) -> bool:
+        """
+        Verifica presença de uma skill sem considerar substrings de outras palavras.
+        """
+
+        normalized_variant = JobMatcher._normalize_text(variant)
+        if not normalized_variant:
+            return False
+
+        if normalized_variant in corpus:
+            return True
+
+        pattern = rf"(?<![a-z0-9]){re.escape(normalized_variant)}(?![a-z0-9])"
+        return bool(re.search(pattern, corpus))
 
     def _build_summary(
         self,

@@ -1,24 +1,18 @@
-import React from 'react';
-import StatCard from './StatCard';
-import { Stat } from '../types';
+import StatCard from './StatCard'
+import type { Stat } from '../types'
 
 interface StatsGridProps {
-  stats: Stat[];
+  stats: Stat[]
 }
 
-const StatsGrid: React.FC<StatsGridProps> = ({ stats }) => {
+function StatsGrid({ stats }: StatsGridProps) {
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', // Responsividade automática
-      gap: '24px',
-      marginTop: '32px',
-    }}>
-      {stats.map((stat, index) => (
-        <StatCard key={index} title={stat.title} value={stat.value} />
+    <div className="stats-grid">
+      {stats.map((stat) => (
+        <StatCard key={stat.title} title={stat.title} value={stat.value} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default StatsGrid;
+export default StatsGrid

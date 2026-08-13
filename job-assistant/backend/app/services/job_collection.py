@@ -24,7 +24,7 @@ class JobCollectionService:
         limit: int,
     ) -> CollectionResponse:
         """
-        Busca vagas na Remotive e salva no PostgreSQL.
+        Busca vagas na Remotive e sincroniza o banco local.
         """
 
         connector = RemotiveConnector()
@@ -33,24 +33,12 @@ class JobCollectionService:
             limit=limit
         )
 
-        inserted = 0
-        updated = 0
-
         try:
-            for job in jobs:
-                operation = (
-                    self.repository.upsert(
-                        job
-                    )
-                )
-
-                if operation == "inserted":
-                    inserted += 1
-                else:
-                    updated += 1
-
+            sync_result = self.repository.sync_jobs(
+                source=connector.source_name,
+                incoming_jobs=jobs,
+            )
             self.db.commit()
-
         except Exception:
             self.db.rollback()
             raise
@@ -58,6 +46,7 @@ class JobCollectionService:
         return CollectionResponse(
             source=connector.source_name,
             received=len(jobs),
-            inserted=inserted,
-            updated=updated,
+            inserted=sync_result["inserted"],
+            updated=sync_result["updated"],
+            removed=sync_result["removed"],
         )

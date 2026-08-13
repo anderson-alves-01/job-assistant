@@ -1,0 +1,51 @@
+{
+  "english_level": {
+    "question_patterns": [
+      "what is your english level",
+      "english proficiency",
+      "nível de inglês"
+    ],
+    "answer": "Fluent. I have experience communicating and collaborating with international and distributed teams."
+  },
+  "availability": {
+    "question_patterns": [
+      "when can you start",
+      "availability",
+      "quando pode começar"
+    ],
+    "answer": "I am available to start immediately."
+  },
+  "java_experience": {
+    "question_patterns": [
+      "years of java experience",
+      "experience with java",
+      "experiência com java"
+    ],
+    "answer": "I have worked with Java since 2005, developing and modernizing enterprise applications, APIs and distributed systems."
+  },
+  "spring_experience": {
+    "question_patterns": [
+      "spring boot experience",
+      "experience with spring",
+      "experiência com spring"
+    ],
+    "answer": "I have extensive experience with Spring Boot, Spring MVC, Spring Data, Spring Security, Spring Cloud and microservices."
+  },
+  "aws_experience": {
+    "question_patterns": [
+      "aws experience",
+      "cloud experience",
+      "experiência com aws"
+    ],
+    "answer": "I have hands-on experience with AWS services including EKS, ECS, Lambda, API Gateway, S3, RDS, DynamoDB, SQS and SNS."
+  },
+  "work_authorization": {
+    "question_patterns": [
+      "authorized to work",
+      "work authorization",
+      "visa sponsorship"
+    ],
+    "answer": null,
+    "always_require_review": true
+  }
+}

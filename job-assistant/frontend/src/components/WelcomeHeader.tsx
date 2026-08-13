@@ -1,14 +1,14 @@
-import React from 'react';
-
-const WelcomeHeader: React.FC = () => {
+function WelcomeHeader() {
   return (
-    <div style={{ marginBottom: '32px' }}>
-      <h2 style={{ fontSize: '2rem', margin: '0 0 8px 0' }}>Bem vindo !</h2>
-      <p style={{ fontSize: '1.2rem', color: '#555', margin: 0 }}>
-        Veja as melhores vagas encontradas para o seu perfil.
+    <div className="welcome-header">
+      <p className="eyebrow">Dashboard de vagas</p>
+      <h1>Bem-vindo ao Job Assistant</h1>
+      <p>
+        Veja as melhores oportunidades alinhadas ao seu perfil profissional e
+        acompanhe rapidamente a aderência de cada vaga.
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default WelcomeHeader;
+export default WelcomeHeader

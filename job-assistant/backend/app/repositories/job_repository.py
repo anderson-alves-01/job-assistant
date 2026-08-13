@@ -47,6 +47,57 @@ class JobRepository:
 
         return "updated"
 
+    def sync_jobs(
+        self,
+        source: str,
+        incoming_jobs: list[NormalizedJob],
+    ) -> dict[str, int]:
+        """
+        Sincroniza a base local com a fonte atual, removendo vagas
+        que não estiveram mais presentes na última coleta.
+        """
+
+        incoming_ids = {
+            (source.upper(), job.external_id)
+            for job in incoming_jobs
+        }
+
+        existing_jobs = self.db.scalars(
+            select(Job).where(Job.source == source.upper())
+        ).all()
+
+        existing_ids = {
+            (job.source, job.external_id)
+            for job in existing_jobs
+        }
+
+        inserted = 0
+        updated = 0
+        removed = 0
+
+        for job in incoming_jobs:
+            operation = self.upsert(job)
+            if operation == "inserted":
+                inserted += 1
+            else:
+                updated += 1
+
+        stale_jobs = [
+            job
+            for job in existing_jobs
+            if (job.source, job.external_id) not in incoming_ids
+        ]
+
+        for stale_job in stale_jobs:
+            self.db.delete(stale_job)
+            removed += 1
+
+        return {
+            "inserted": inserted,
+            "updated": updated,
+            "removed": removed,
+        }
+
     def list_jobs(
         self,
         source: str | None = None,
@@ -67,8 +118,16 @@ class JobRepository:
             )
 
         if status:
+            normalized_status = status.upper()
+            if normalized_status == "ALL":
+                pass
+            else:
+                statement = statement.where(
+                    Job.status == normalized_status
+                )
+        else:
             statement = statement.where(
-                Job.status == status.upper()
+                Job.status != "ARCHIVED"
             )
 
         if search:

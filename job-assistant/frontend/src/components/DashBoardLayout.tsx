@@ -1,20 +1,18 @@
-import React from 'react';
-import DashboardHeader from './DashboardHeader';
+import type { ReactNode } from 'react'
+import DashboardHeader from './DashBoardHeader'
 
 interface DashboardLayoutProps {
-  userName: string;
-  children: React.ReactNode;
+  userName: string
+  children: ReactNode
 }
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ userName, children }) => {
+function DashboardLayout({ userName, children }: DashboardLayoutProps) {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="dashboard-shell">
       <DashboardHeader userName={userName} />
-      <main style={{ flex: 1, padding: '32px' }}>
-        {children}
-      </main>
+      <main className="dashboard-main">{children}</main>
     </div>
-  );
-};
+  )
+}
 
-export default DashboardLayout;
+export default DashboardLayout

@@ -53,7 +53,7 @@ Nesta fase do MVP, o backend já está sendo preparado para:
 
 - Frontend em React.
 - Extensão Chrome/Edge para preenchimento assistido.
-- Conectores adicionais: Remote OK, We Work Remotely, Remotar, Trampos, 99Freelas etc.
+- Conectores adicionais: We Work Remotely, Remotar, Trampos, 99Freelas etc.
 - Uso de IA para perguntas abertas.
 - Seleção automática de currículo por tipo de vaga.
 - Histórico completo de candidaturas.
@@ -86,7 +86,6 @@ job-assistant/
 │   │   ├── connectors/
 │   │   │   ├── base.py
 │   │   │   ├── remotive.py
-│   │   │   ├── remote_ok.py
 │   │   │   └── we_work_remotely.py
 │   │   ├── core/
 │   │   │   ├── database.py
@@ -1064,14 +1063,14 @@ profile/answers.example.json
 
 ### Fase 4 — Frontend
 
-- [ ] Criar projeto React com Vite.
-- [ ] Criar tela de listagem de vagas.
-- [ ] Mostrar score e recomendação.
-- [ ] Criar filtros por score, fonte e termo.
-- [ ] Criar página de detalhe.
-- [ ] Botão “Abrir candidatura”.
-- [ ] Botão “Descartar”.
-- [ ] Botão “Marcar para revisar”.
+- [x] Criar projeto React com Vite.
+- [x] Criar tela de listagem de vagas.
+- [x] Mostrar score e recomendação.
+- [x] Criar filtros por score e termo.
+- [x] Criar painel de detalhe da vaga.
+- [x] Botão “Abrir candidatura”.
+- [x] Ações de revisão humana em interface clara.
+- [x] Integrar com a API real do backend.
 
 ### Fase 5 — Extensão
 
@@ -1094,7 +1093,6 @@ profile/answers.example.json
 
 ### Fase 7 — Novos conectores
 
-- [ ] Remote OK.
 - [ ] We Work Remotely.
 - [ ] Jobspresso.
 - [ ] Working Nomads.
@@ -1110,35 +1108,23 @@ profile/answers.example.json
 
 ## 22. Próximo passo recomendado
 
-O próximo passo técnico é criar o **frontend simples em React**, consumindo os endpoints já existentes:
+A fase 4 foi concluída com um dashboard React integrado ao backend real. O próximo avanço técnico é a criação da extensão de navegador para preenchimento assistido e revisão manual em páginas reais.
 
-```text
-GET /api/jobs/matches?limit=50
-GET /api/jobs/{id}/match
-POST /api/jobs/collect/remotive
-```
+Principais próximos passos:
 
-A primeira tela deve mostrar:
-
-- título da vaga;
-- empresa;
-- fonte;
-- localização;
-- score;
-- recomendação;
-- skills encontradas;
-- skills ausentes;
-- botão para abrir a candidatura;
-- botão para descartar;
-- botão para revisar depois.
+- criar Manifest V3 da extensão;
+- reutilizar o perfil profissional salvo localmente;
+- mapear campos de formulário e labels;
+- preencher campos conhecidos com revisão humana;
+- nunca clicar automaticamente em “Submit”.
 
 ---
 
 ## 23. Status atual do MVP
 
-O projeto está na fase de backend local, com PostgreSQL e FastAPI.
+O projeto está em fase de frontend funcional, com React + Vite conectado ao backend local e com dados reais de vagas e score de aderência.
 
-O objetivo imediato é garantir que os seguintes endpoints funcionem corretamente:
+O backend continua responsável por:
 
 ```text
 GET  /api/health
@@ -1148,4 +1134,4 @@ GET  /api/jobs/matches
 GET  /api/jobs/{id}/match
 ```
 
-Quando esses endpoints estiverem estáveis, o desenvolvimento pode avançar para o frontend e, depois, para a extensão de preenchimento assistido.
+O frontend atual já consegue consumir a API e mostrar dashboard com métricas, filtros, score, recomendação, skills e painel de detalhe da vaga. A próxima etapa é a extensão de preenchimento assistido.

@@ -75,3 +75,8 @@ class CollectionResponse(BaseModel):
         ge=0,
         description="Quantidade de vagas atualizadas",
     )
+
+    removed: int = Field(
+        ge=0,
+        description="Quantidade de vagas removidas porque saíram da fonte",
+    )
